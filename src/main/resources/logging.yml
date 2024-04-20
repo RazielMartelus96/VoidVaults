@@ -1,0 +1,7 @@
+enabled: true
+loggable_events:
+  creation: true
+  deletion: true
+  open: true
+  close: false
+  item_change: false

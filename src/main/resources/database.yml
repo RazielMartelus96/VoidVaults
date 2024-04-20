@@ -1,0 +1,10 @@
+database:
+  host: "localhost"
+  port: 3306
+  name: "minecraft_db"
+  user: "minecraft_user"
+  password: "securepassword"
+  useSSL: false
+  autoReconnect: true
+  maxPoolSize: 10
+  timeout: 300
