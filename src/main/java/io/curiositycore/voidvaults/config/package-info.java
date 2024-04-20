@@ -1,0 +1,1 @@
+package io.curiositycore.voidvaults.config;

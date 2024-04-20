@@ -1,0 +1,4 @@
+name: VoidVaults
+version: '${project.version}'
+main: io.curiositycore.voidvaults.VoidVaults
+api-version: '1.20'
