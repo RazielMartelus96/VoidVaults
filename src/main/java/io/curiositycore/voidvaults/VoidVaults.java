@@ -17,7 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.stream.Collectors;
 
-public final class VoidVaults extends JavaPlugin {
+public class VoidVaults extends JavaPlugin {
 
     private DatabaseManager databaseManager;
     private LoggerConfigManager loggerConfigManager;

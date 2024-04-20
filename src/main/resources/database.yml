@@ -1,10 +1,8 @@
 database:
-  host: "localhost"
-  port: 3306
-  name: "minecraft_db"
+  jdbcUrl: "jdbc:mysql://localhost:3306/minecraft_db?useSSL=false&autoReconnect=true"
   user: "minecraft_user"
   password: "securepassword"
-  useSSL: false
-  autoReconnect: true
   maxPoolSize: 10
-  timeout: 300
+  connectionTimeout: 30000   # milliseconds
+  timeout: 300000            # milliseconds, idle timeout
+  maxLifetime: 1800000       # milliseconds, max lifetime
