@@ -70,7 +70,7 @@ public class DatabaseManager {
     }
 
     public void saveVaultsForPlayer(UUID playerUuid) throws SQLException {
-        List<Vault> vaults = vaultManager.getVaultForPlayer(playerUuid);
+        List<Vault> vaults = vaultManager.getVaultsForPlayer(playerUuid);
         for (Vault vault : vaults){
             saveVaultsForPlayer(playerUuid, vault);
         }

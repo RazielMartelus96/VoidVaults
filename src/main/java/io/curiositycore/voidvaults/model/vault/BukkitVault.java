@@ -4,10 +4,29 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.UUID;
 
+/**
+ * Implementation of the {@linkplain Vault} interface, representing a vault that is stores {@linkplain
+ * org.bukkit.inventory.ItemStack ItemStacks} in the form of a Bukkit {@linkplain Inventory} object.
+ */
 public class BukkitVault implements Vault{
+    /**
+     * The ID of the Vault within the database.
+     */
     private int vaultId;
+
+    /**
+     * The UUID of the player who owns the Vault.
+     */
     private UUID ownerId;
+
+    /**
+     * The size of the Vault.
+     */
     private int size;
+
+    /**
+     * The {@linkplain Inventory} object that represents the Vault.
+     */
     private Inventory inventory;
 
     @Override
@@ -35,37 +54,40 @@ public class BukkitVault implements Vault{
         return inventory;
     }
 
-    public static class BukkitVaultBuilder implements Builder<BukkitVault>{
+    /**
+     * Builder class for the {@linkplain BukkitVault} class, implementing the {@linkplain VaultBuilder} interface.
+     */
+    public static class BukkitVaultVaultBuilder implements VaultBuilder<BukkitVault> {
         private int vaultId;
         private UUID ownerId;
         private int size;
         private Inventory inventory;
 
         @Override
-        public Builder<BukkitVault> withOwnerId(UUID ownerId) {
+        public VaultBuilder<BukkitVault> withOwnerId(UUID ownerId) {
             this.ownerId = ownerId;
             return this;
         }
 
         @Override
-        public Builder<BukkitVault> withId(int vaultId) {
+        public VaultBuilder<BukkitVault> withId(int vaultId) {
             this.vaultId = vaultId;
             return this;
         }
 
         @Override
-        public Builder<BukkitVault> withSize(int size) {
+        public VaultBuilder<BukkitVault> withSize(int size) {
             this.size = size;
             return this;
         }
 
         @Override
-        public Builder<BukkitVault> withFreeSize(int freeSize) {
+        public VaultBuilder<BukkitVault> withFreeSize(int freeSize) {
             return this;
         }
 
         @Override
-        public Builder<BukkitVault> withInventory(Inventory inventory) {
+        public VaultBuilder<BukkitVault> withInventory(Inventory inventory) {
             this.inventory = inventory;
             return this;
         }

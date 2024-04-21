@@ -1,5 +1,7 @@
 package io.curiositycore.voidvaults.persistence.hikari;
 
+import io.curiositycore.voidvaults.persistence.queries.DatabaseSchemaOperations;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,12 +23,7 @@ public class DatabaseInitializer {
     }
 
     private void createPlayerVaultsTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS player_vaults (" +
-                "vault_id INT AUTO_INCREMENT PRIMARY KEY," +
-                "player_uuid CHAR(36) NOT NULL," +
-                "UNIQUE INDEX idx_player_uuid (player_uuid)," +
-                "INDEX idx_vault_id (vault_id)" +
-                ");";
+        String sql = DatabaseSchemaOperations.CREATE_PLAYER_VAULTS_TABLE.getQuery();
 
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement()) {
@@ -38,13 +35,7 @@ public class DatabaseInitializer {
     }
 
     private void createItemsTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS vault_items (" +
-                "item_id INT AUTO_INCREMENT PRIMARY KEY," +
-                "vault_id INT NOT NULL," +
-                "item_data BLOB NOT NULL," +  // Serialized item stack data
-                "FOREIGN KEY (vault_id) REFERENCES player_vaults(vault_id)" +
-                " ON DELETE CASCADE ON UPDATE CASCADE" +
-                ");";
+        String sql = DatabaseSchemaOperations.CREATE_ITEMS_TABLE.getQuery();
 
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement()) {

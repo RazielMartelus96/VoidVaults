@@ -1,11 +1,13 @@
 package io.curiositycore.voidvaults.persistence.queries;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-
+/**
+ * Enum containing SQL operations to be executed on the database for the purposes of Schema creation, such as creating
+ * tables.
+ */
 public enum DatabaseSchemaOperations {
+    /**
+     * Operation to create the player_vaults table. Used to define each vault in terms of owner unique vault ID.
+     */
     CREATE_PLAYER_VAULTS_TABLE(
             "CREATE TABLE IF NOT EXISTS player_vaults (" +
                     "vault_id INT AUTO_INCREMENT PRIMARY KEY," +
@@ -15,6 +17,10 @@ public enum DatabaseSchemaOperations {
                     "INDEX idx_vault_id (vault_id)" +
                     ");"
     ),
+    /**
+     * Operation to create the vault_items table. Used to store the metadata of each stored item, relating it to its
+     * parent vault.
+     */
     CREATE_ITEMS_TABLE(
             "CREATE TABLE IF NOT EXISTS vault_items (" +
                     "item_id INT AUTO_INCREMENT PRIMARY KEY," +
@@ -27,20 +33,24 @@ public enum DatabaseSchemaOperations {
                     ");"
     );
 
+    /**
+     * The SQL statement to be executed.
+     */
+    private final String query;
 
-    private final String sql;
-
-    DatabaseSchemaOperations(String sql) {
-        this.sql = sql;
+    /**
+     * Constructor for the enum.
+     * @param query The SQL statement to be executed.
+     */
+    DatabaseSchemaOperations(String query) {
+        this.query = query;
+    }
+    /**
+     * Getter for the SQL query string.
+     * @return The query string.
+     */
+    public String getQuery() {
+        return query;
     }
 
-    public void execute(DataSource dataSource) {
-        try (Connection conn = dataSource.getConnection();
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(this.sql);
-        } catch (SQLException e) {
-            System.err.println("Failed to execute operation " + this.name() + ": " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
 }

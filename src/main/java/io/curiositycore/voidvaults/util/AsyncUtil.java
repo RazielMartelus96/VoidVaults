@@ -5,8 +5,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.function.Consumer;
 
+/**
+ * Utility class for running tasks asynchronously. This is typically utilised within the {@linkplain
+ * io.curiositycore.voidvaults.listeners.VaultListener Vault Listener}, which has been designated to be the centralised
+ * location of all Asynchronous logic within the plugin.
+ */
 public class AsyncUtil {
 
+    /**
+     * Run a task asynchronously, catching any exceptions that may occur and logging them to the server logs.
+     * @param plugin The plugin instance that the task is being run for.
+     * @param task The task to run asynchronously.
+     */
     public static void runAsync(JavaPlugin plugin, Runnable task) {
         new BukkitRunnable() {
             public void run() {
@@ -20,6 +30,14 @@ public class AsyncUtil {
             }
         }.runTaskAsynchronously(plugin);
     }
+
+    /**
+     * Run a task asynchronously, catching any exceptions that may occur and logging them to the server logs. Once
+     * the task completes successfully, it then runs a success callback task.
+     * @param plugin The plugin instance that the task is being run for.
+     * @param task The task to run asynchronously.
+     * @param onSuccess The success callback task. Ran upon successful execution of the primary task.
+     */
     public static void runTaskAsync(JavaPlugin plugin, Runnable task, Runnable onSuccess, Consumer<Exception> onError) {
         new BukkitRunnable() {
             public void run() {
