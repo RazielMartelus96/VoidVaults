@@ -30,8 +30,12 @@ public enum VaultEventType {
         return capitalizeWords(this.name().toLowerCase().replaceAll("_", " "));
     }
 
+    /**
+     * Capitalizes the first letter of each word in the input string.
+     * @param input The input string.
+     * @return The input string with the first letter of each word capitalized.
+     */
     private String capitalizeWords(String input) {
-        // Split the input into words
         String[] words = input.split(" ");
         StringBuilder result = new StringBuilder();
         for (String word : words) {

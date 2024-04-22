@@ -6,7 +6,18 @@ import io.curiositycore.voidvaults.model.vault.Vault;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+/**
+ * Event that represents the creation of a {@linkplain Vault vault}. Typically occurs when either commands or initial
+ * players join the server and create a new vault.
+ */
 public class VaultCreationEvent extends VaultEvent {
+
+    /**
+     * Constructs a new VaultCreationEvent with the given {@linkplain Vault}, {@linkplain Player}, and {@linkplain Location}.
+     * @param vault The vault that is involved in the event.
+     * @param player The player that is involved in the event.
+     * @param location The location of the event.
+     */
     public VaultCreationEvent(Vault vault, Player player, Location location) {
         super(vault, player, location);
     }

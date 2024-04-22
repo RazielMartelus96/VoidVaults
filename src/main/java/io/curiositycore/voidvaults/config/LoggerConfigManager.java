@@ -162,8 +162,6 @@ public class LoggerConfigManager {
         }
         Objects.requireNonNull(logConfig.getConfigurationSection("loggable_events")).set(eventType.name().toLowerCase(), enabled);
         saveConfig();
-
-
     }
 
     /**
